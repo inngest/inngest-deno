@@ -35,6 +35,7 @@ export class Inngest {
     this.inngestApiUrl = new URL(this.apiKey, inngestApiUrl).toString();
 
     this.reqConfig = {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
         "User-Agent": "InngestDeno 0.1.0",
