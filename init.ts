@@ -1,3 +1,4 @@
+import { toFileUrl } from "https://deno.land/std@0.154.0/path/mod.ts";
 import type { InngestResponse, InngestStep } from "./src/types.d.ts";
 
 async function init(): Promise<InngestResponse> {
@@ -14,7 +15,9 @@ async function init(): Promise<InngestResponse> {
 
   // Import this asynchronously, such that any top-level
   // errors in user code are caught.
-  const { run } = (await import(import.meta.resolve(fnPath))) as {
+  const { run } = (await import(
+    new URL(fnPath, toFileUrl(Deno.cwd()).href + "/").href
+  )) as {
     run: InngestStep<unknown>;
   };
 
