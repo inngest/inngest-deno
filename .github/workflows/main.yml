@@ -1,4 +1,4 @@
-name: Test
+name: Checks
 
 on:
   push:
@@ -6,6 +6,20 @@ on:
       - main
 
 jobs:
+  fmt:
+    name: Format check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: denoland/setup-deno@v1
+      - run: deno fmt --check
+  lint:
+    name: Lint check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: denoland/setup-deno@v1
+      - run: deno lint
   test:
     name: Test
     runs-on: ubuntu-latest
