@@ -18,7 +18,7 @@ async function init(): Promise<InngestResponse> {
   const { run } = (await import(
     new URL(fnPath, toFileUrl(Deno.cwd()).href + "/").href
   )) as {
-    run: InngestStep<any>;
+    run: InngestStep<unknown>;
   };
 
   const result = await run(context);
